@@ -23,7 +23,7 @@ const getuser=(userid)=>{
 //for conncetion esdtablishment
 io.on("connection", (socket) => {
     console.log("socket.id")
-    // io.emit("welcome","this is the socket server")
+    io.emit("welcome","this is the socket server")
     socket.on("adduser",(userid)=>{
          adduser(userid,socket.id)
          io.emit("getuser",users)
