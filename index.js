@@ -1,7 +1,12 @@
-const io=require("socket.io")(8900,{
+const express=require('express')
+const app=express();
+const http=require('http').Server(app)
+const PORT=process.env.PORT||8900;
+
+const io=require("socket.io")(http,{
     cors:{
         origin:"https://magnificent-kashata-c33ff9.netlify.app"
-        // origin:"https://localhost:5173"
+        // origin:"http://localhost:5173"
     },
 });
 let users=[]
@@ -49,3 +54,9 @@ socket.on("sendmessage",({senderid,receiverid,text})=>{
 
     })
 })
+
+app.get('/',(req,res)=>
+{
+res.send("this scoket.io server")
+})
+app.listen(PORT,()=>console.log(`server ${PORT}`))
