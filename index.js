@@ -1,14 +1,18 @@
-const express=require('express')
-const app=express();
-const http=require('http').createServer().listen(8901)
-// import express from "express"
+// const express=require('express')
+// const cors=require("cors")
+// const http=require('http').createServer().listen(8901)
+import express from "express"
 const PORT=process.env.PORT||8900;
-// import { createServer } from "http";
-// import { Server } from "socket.io";
+import { createServer } from "http";
+import { Server } from "socket.io";
 
-// const httpServer = createServer();
+const httpServer = createServer().listen(8901);
+// has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
 
-const io=require("socket.io")(http,{
+const app=express();
+
+// const io=require("socket.io")(http,{
+const io=new Server(httpServer,{
     cors:{
         origin:"https://magnificent-kashata-c33ff9.netlify.app",
         // origin:"http://localhost:5173",
