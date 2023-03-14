@@ -5,8 +5,10 @@ const PORT=process.env.PORT||8900;
 
 const io=require("socket.io")(http,{
     cors:{
-        origin:"https://magnificent-kashata-c33ff9.netlify.app"
-        // origin:"http://localhost:5173"
+        // origin:"https://magnificent-kashata-c33ff9.netlify.app"
+        origin:"http://localhost:5173",
+        allowedHeaders: ["my-custom-header"],
+    credentials: true
     },
 });
 let users=[]
