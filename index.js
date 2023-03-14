@@ -3,12 +3,16 @@ const app=express();
 const http=require('http').Server(app)
 const PORT=process.env.PORT||8900;
 
-const io=require("socket.io")(http,{
+const io=require("socket.io")(8901,{
     cors:{
         // origin:"https://magnificent-kashata-c33ff9.netlify.app"
         origin:"http://localhost:5173",
         allowedHeaders: ["my-custom-header"],
-    credentials: true
+        credentials: true,
+        allowRequest: (req, callback) => {
+            const noOriginHeader = req.headers.origin === undefined;
+            callback(null, noOriginHeader); // only allow requests without 'origin' header
+          }
     },
 });
 let users=[]
