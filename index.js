@@ -2,11 +2,15 @@ const express=require('express')
 const app=express();
 const http=require('http').Server(app)
 const PORT=process.env.PORT||8900;
+// import { createServer } from "http";
+// import { Server } from "socket.io";
 
-const io=require("socket.io")(8901,{
+// const httpServer = createServer();
+
+const io=require("socket.io")(http,{
     cors:{
-        // origin:"https://magnificent-kashata-c33ff9.netlify.app"
-        origin:"http://localhost:5173",
+        origin:"https://magnificent-kashata-c33ff9.netlify.app",
+        // origin:"http://localhost:5173",
         allowedHeaders: ["my-custom-header"],
         credentials: true,
         allowRequest: (req, callback) => {
