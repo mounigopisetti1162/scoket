@@ -1,6 +1,7 @@
 const express=require('express')
 const app=express();
-const http=require('http').Server(app)
+const http=require('http').createServer().listen(8901)
+// import express from "express"
 const PORT=process.env.PORT||8900;
 // import { createServer } from "http";
 // import { Server } from "socket.io";
@@ -20,11 +21,11 @@ const io=require("socket.io")(http,{
     },
 });
 let users=[]
-// console.log(users)
+console.log(users)
 const adduser=(userid,socketid)=>{
     !users.some((user)=>user.userid===userid) &&
     users.push({userid,socketid})
-    // console.log(users)
+    console.log(users)
 }
 const removeuser=(socketid)=>{
     users=users.filter((user)=>user.socketid !==socketid)
